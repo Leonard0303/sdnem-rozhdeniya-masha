@@ -17,8 +17,8 @@ const photo = photoFrom('01-hero')
         <em>рождения</em>
       </h1>
       <div class="hero__text">
-        <p>Сегодня особенный день.</p>
-        <p>Потому что сегодня родилась ты.</p>
+        <p>Сегодня день, когда родилась ты.</p>
+        <p>И именно поэтому он особенный для меня.</p>
       </div>
     </template>
 
@@ -51,7 +51,7 @@ const photo = photoFrom('01-hero')
 
 .hero__text {
   margin-top: clamp(24px, 4vh, 42px);
-  max-width: 30ch;
+  max-width: 100%;
   border-top: 1px solid var(--line);
   padding-top: clamp(18px, 3vh, 28px);
 }

@@ -17,7 +17,7 @@ defineProps({
 <template>
   <section class="shell" :class="{ 'is-active': active }">
     <header class="shell__index">
-      <span class="shell__number">{{ String(step).padStart(2, '0') }}</span>
+      <span class="shell__number">{{ step }}</span>
       <span class="shell__rule" aria-hidden="true"></span>
       <span v-if="label" class="meta">{{ label }}</span>
     </header>
@@ -82,6 +82,7 @@ defineProps({
   position: relative;
   align-self: stretch; /* колонка с фото занимает всю высоту строки сетки */
   min-height: 0;
+  min-width: 0; /* иначе широкая композиция растягивает колонку и выталкивает текст */
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -110,6 +111,7 @@ defineProps({
 
 @media (max-width: 900px) {
   .shell__grid {
+    margin-top: clamp(18px, 3vh, 32px); /* чтобы метка не липла к номеру страницы */
     grid-template-columns: 1fr;
     grid-template-rows: auto minmax(0, 1fr);
     align-content: center;

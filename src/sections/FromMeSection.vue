@@ -1,11 +1,17 @@
 <script setup>
+import { computed } from 'vue'
 import SectionShell from '../components/SectionShell.vue'
 import PhotoFrame from '../components/PhotoFrame.vue'
 import { photoFrom } from '../photos'
+import { usePhotoRatios } from '../composables/usePhotoRatios'
 
 defineProps({ active: Boolean, step: Number })
 
 const photo = photoFrom('02-from-me')
+
+// Рамка повторяет пропорции самой фотографии: горизонтальный кадр — горизонтальная рамка
+const { ratios, ready } = usePhotoRatios(photo ? [photo] : [])
+const ratio = computed(() => String(ratios.value[photo?.name] ?? 1))
 </script>
 
 <template>
@@ -13,15 +19,15 @@ const photo = photoFrom('02-from-me')
     <template #aside>
       <h2 class="from-me__title">От меня <span class="from-me__heart">❤️</span></h2>
       <div class="from-me__text">
-        <p>Здесь будет то, что я давно хотел сказать тебе вслух.</p>
-        <p>Пусть этот день будет только твоим — и пусть он будет тёплым.</p>
+        <p>Есть вещи, которые не всегда получается сказать вслух.</p>
+        <p>Просто знай — я очень тебя люблю.</p>
       </div>
       <p class="from-me__sign meta">С любовью</p>
     </template>
 
     <template #visual>
       <div class="from-me__photo">
-        <PhotoFrame v-if="photo" :src="photo.src" alt="" ratio="3 / 4" />
+        <PhotoFrame v-if="photo && ready" :src="photo.src" alt="" :ratio="ratio" />
       </div>
     </template>
   </SectionShell>
@@ -45,7 +51,7 @@ const photo = photoFrom('02-from-me')
 
 .from-me__text {
   margin-top: clamp(22px, 3.6vh, 38px);
-  max-width: 32ch;
+  max-width: 100%;
   border-top: 1px solid var(--line);
   padding-top: clamp(18px, 3vh, 28px);
 }

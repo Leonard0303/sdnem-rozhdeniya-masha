@@ -9,7 +9,6 @@ const total = sections.length
 const offset = computed(() => `translate3d(0, ${-index.value * 100}%, 0)`)
 const atStart = computed(() => index.value === 0)
 const atEnd = computed(() => index.value === total - 1)
-const pad = (n) => String(n).padStart(2, '0')
 </script>
 
 <template>
@@ -31,13 +30,13 @@ const pad = (n) => String(n).padStart(2, '0')
         class="deck__dot"
         :class="{ 'is-current': i === index }"
         type="button"
-        :aria-label="`${pad(i + 1)} — ${section.title}`"
+        :aria-label="`${i + 1} — ${section.title}`"
         :aria-current="i === index ? 'true' : undefined"
         @click="goTo(i)"
       >
         <span class="deck__dot-line"></span>
       </button>
-      <span class="deck__counter meta">{{ pad(index + 1) }} / {{ pad(total) }}</span>
+      <span class="deck__counter meta">{{ index + 1 }} / {{ total }}</span>
     </nav>
 
     <!-- Управление -->
