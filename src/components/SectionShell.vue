@@ -69,7 +69,7 @@ defineProps({
   flex: 1 1 auto;
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(300px, 1fr) minmax(0, 1fr);
   gap: clamp(32px, 5vw, 88px);
   align-items: center;
 }

@@ -16,9 +16,16 @@ const photo = photoFrom('01-hero')
         С днём<br />
         <em>рождения</em>
       </h1>
-      <div class="hero__text">
-        <p>Сегодня день, когда родилась ты.</p>
-        <p>И именно поэтому он особенный для меня.</p>
+      <div class="prose">
+        <p class="prose__lead">Есть дни, которые хочется запомнить. Сегодня — один из них. ❤️</p>
+        <p>
+          Твой день, твоя улыбка, твои мечты и всё самое прекрасное, что ещё ждёт тебя
+          впереди.
+        </p>
+        <p>
+          Пусть этот новый год твоей жизни будет наполнен счастьем, любовью и моментами,
+          которые захочется сохранить навсегда.
+        </p>
       </div>
     </template>
 
@@ -46,21 +53,6 @@ const photo = photoFrom('01-hero')
 
 .hero__title em {
   font-style: italic;
-  color: var(--ink-soft);
-}
-
-.hero__text {
-  margin-top: clamp(24px, 4vh, 42px);
-  max-width: 100%;
-  border-top: 1px solid var(--line);
-  padding-top: clamp(18px, 3vh, 28px);
-}
-
-.hero__text p {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(18px, 1.5vw, 23px);
-  line-height: 1.55;
   color: var(--ink-soft);
 }
 

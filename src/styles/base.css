@@ -46,6 +46,34 @@ img {
   max-width: 100%;
 }
 
+/* Текстовый блок страницы: вводная строка крупнее, остальное — спокойный набор.
+   Общий для всех секций, чтобы страницы читались как одна книга. */
+.prose {
+  margin-top: clamp(18px, 3.2vh, 36px);
+  max-width: 100%;
+  border-top: 1px solid var(--line);
+  padding-top: clamp(16px, 2.6vh, 26px);
+  font-family: var(--serif);
+  color: var(--ink-soft);
+}
+
+.prose p {
+  margin: 0 0 0.95em;
+  font-size: clamp(14px, 1.05vw, 18px);
+  line-height: 1.62;
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.prose .prose__lead {
+  margin-bottom: 1.1em;
+  font-size: clamp(16px, 1.35vw, 22px);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
 /* Мелкий «служебный» текст: нумерация страниц, подписи, подсказки */
 .meta {
   font-family: var(--sans);

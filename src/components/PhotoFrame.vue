@@ -13,6 +13,13 @@ const props = defineProps({
   ratio: { type: String, default: '4 / 5' },
   /** Ширина чёрного поля вокруг снимка */
   matting: { type: String, default: 'clamp(10px, 1.1vw, 18px)' },
+  /**
+   * Во что упирается кадр:
+   * 'auto' — по ориентации снимка, 'height' — всегда в высоту места,
+   * 'width' — всегда в ширину. 'height' нужен, когда несколько фотографий
+   * делят высоту поровну и должны выглядеть согласованно.
+   */
+  fit: { type: String, default: 'auto' },
 })
 
 /**
@@ -20,6 +27,9 @@ const props = defineProps({
  * Иначе горизонтальный кадр обрезался бы до вертикального.
  */
 const isWide = computed(() => {
+  if (props.fit === 'height') return false
+  if (props.fit === 'width') return true
+
   const [w, h] = props.ratio.split('/')
   const value = h === undefined ? Number(w) : Number(w) / Number(h)
   return Number.isFinite(value) && value >= 1

@@ -19,7 +19,18 @@ const photos = photosFrom('03-our-photos')
   <SectionShell :step="step" :active="active" label="Память">
     <template #aside>
       <h2 class="photos__title">Наши<br /><em>моменты</em></h2>
-      <p class="photos__text">Моменты, которые хочется хранить особенно бережно. ❤️</p>
+      <div class="prose">
+        <p class="prose__lead">Моменты, которые хочется хранить особенно бережно.</p>
+        <p>
+          Те самые маленькие мгновения, которые со временем становятся самыми дорогими.
+          Улыбки, смех, случайные взгляды, тёплые разговоры и просто моменты, когда мы
+          счастливы рядом друг с другом.
+        </p>
+        <p>
+          Именно из них и складываются воспоминания, к которым хочется возвращаться снова
+          и снова. ❤️
+        </p>
+      </div>
     </template>
 
     <template #visual>
@@ -52,17 +63,6 @@ const photos = photosFrom('03-our-photos')
   color: var(--ink-soft);
 }
 
-.photos__text {
-  margin: clamp(22px, 3.6vh, 38px) 0 0;
-  max-width: 100%;
-  border-top: 1px solid var(--line);
-  padding-top: clamp(18px, 3vh, 28px);
-  font-family: var(--serif);
-  font-size: clamp(17px, 1.4vw, 22px);
-  line-height: 1.6;
-  color: var(--ink-soft);
-}
-
 /* Ровная сетка 2×2: одинаковые ячейки, одинаковые промежутки,
    никаких поворотов, наложений и перекрытий */
 .photos__grid {
@@ -92,6 +92,30 @@ const photos = photosFrom('03-our-photos')
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@media (max-width: 900px) {
+  /* На узком экране сетка ограничена оставшейся высотой:
+     ячейки делят её поровну, карточки заполняют ячейку целиком */
+  .photos__grid {
+    height: 100%;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+
+  .photos__item {
+    min-height: 0;
+  }
+
+  .photos__item :deep(.frame),
+  .photos__item :deep(.frame__plate) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .photos__item :deep(.frame__image) {
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

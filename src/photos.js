@@ -15,14 +15,15 @@ const modules = import.meta.glob('../import-image/**/*.{png,jpg,jpeg,webp,avif,g
   import: 'default',
 })
 
-/** { '01-hero': ['/path/a.png', ...], ... } */
+/** { '01-hero': [...], '07-her-friends/Лиза': [...], ... } */
 const byFolder = {}
 
 for (const path of Object.keys(modules).sort()) {
-  const match = path.match(/import-image\/([^/]+)\//)
+  // ключ — весь путь папки после import-image, поэтому работают и вложенные
+  // папки вроде '07-her-friends/Лиза'
+  const match = path.match(/import-image\/(.+)\/[^/]+$/)
   if (!match) continue
-  const folder = match[1]
-  ;(byFolder[folder] ||= []).push({
+  ;(byFolder[match[1]] ||= []).push({
     src: modules[path],
     name: path.split('/').pop(),
   })
@@ -30,7 +31,8 @@ for (const path of Object.keys(modules).sort()) {
 
 /**
  * Фотографии одной секции.
- * @param {string} folder — имя папки в import-image, например '01-hero'
+ * @param {string} folder — путь папки в import-image, например '01-hero'
+ *   или '07-her-friends/Лиза'
  * @returns {{src: string, name: string}[]}
  */
 export function photosFrom(folder) {
