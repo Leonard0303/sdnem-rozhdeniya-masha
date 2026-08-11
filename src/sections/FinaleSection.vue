@@ -56,7 +56,7 @@ defineProps({
   max-width: 22ch;
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(26px, 4.4vw, 72px);
+  font-size: clamp(30px, 4.4vw, 72px);
   line-height: 1.24;
   letter-spacing: -0.01em;
 }
