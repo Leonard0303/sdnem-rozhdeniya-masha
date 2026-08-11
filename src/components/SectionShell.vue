@@ -22,7 +22,14 @@ defineProps({
       <span v-if="label" class="meta">{{ label }}</span>
     </header>
 
-    <div class="shell__grid">
+    <!-- Слот `full` — для страниц со своей раскладкой во всю ширину -->
+    <div v-if="$slots.full" class="shell__grid shell__grid--full">
+      <div class="shell__aside shell__aside--full">
+        <slot name="full" />
+      </div>
+    </div>
+
+    <div v-else class="shell__grid">
       <div class="shell__aside">
         <slot name="aside" />
       </div>
@@ -76,6 +83,24 @@ defineProps({
 
 .shell__aside {
   max-width: 46ch;
+  /* колонка занимает всю высоту строки и центрирует содержимое сама —
+     так длинный текст может прокрутиться внутри, а не вылезти за экран */
+  align-self: stretch;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Раскладка во всю ширину: одна колонка без ограничения по ширине текста */
+.shell__grid--full {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.shell__aside--full {
+  max-width: 100%;
+  align-self: stretch;
+  min-height: 0;
 }
 
 .shell__visual {

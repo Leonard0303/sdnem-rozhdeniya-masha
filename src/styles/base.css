@@ -51,6 +51,11 @@ img {
 .prose {
   margin-top: clamp(18px, 3.2vh, 36px);
   max-width: 100%;
+  /* если поздравление длиннее экрана, оно прокручивается внутри страницы,
+     а не обрезается; перелистывание при этом не срабатывает */
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
   border-top: 1px solid var(--line);
   padding-top: clamp(16px, 2.6vh, 26px);
   font-family: var(--serif);

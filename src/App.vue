@@ -18,7 +18,12 @@ const atEnd = computed(() => index.value === total - 1)
       :style="{ transform: offset, transitionDuration: duration + 'ms' }"
     >
       <div v-for="(section, i) in sections" :key="section.id" class="deck__slide">
-        <component :is="section.component" :step="i + 1" :active="i === index" />
+        <component
+          :is="section.component"
+          v-bind="section.props"
+          :step="i + 1"
+          :active="i === index"
+        />
       </div>
     </div>
 
